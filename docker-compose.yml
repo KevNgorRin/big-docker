@@ -28,6 +28,11 @@ services:
     ports:
       - 5542:5542
     env_file: .env.st
+    environment:
+      POSTGRES_USER: "supertokens-user"
+      POSTGRES_PASSWORD: "12345678"
+      POSTGRES_DB: "supertokens-db"
+      POSTGRESQL_CONNECTION_URI: "postgresql://supertokens-user:12345678@postgresql:5541/supertokens-db"
     restart: unless-stopped
     healthcheck:
       test: >
