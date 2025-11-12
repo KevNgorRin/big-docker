@@ -26,7 +26,7 @@ services:
       postgresql:
         condition: service_healthy
     ports:
-      - 5542:5542
+      - 5542:3567
     env_file: .env.st
     environment:
       POSTGRES_USER: "supertokens-user"
