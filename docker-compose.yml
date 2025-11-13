@@ -50,7 +50,7 @@ services:
     env_file: .env.minio
     volumes:
       - ./minio_data:/data
-    command: server /data --console-address ":5544"
+    command: server /data --address ":5543" --console-address ":5544"
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:5544/minio/health/ready"]
