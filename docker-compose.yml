@@ -19,6 +19,27 @@ services:
       timeout: 5s
       retries: 5
 
+  logflare:
+    container_name: logflare
+    image: supabase/logflare:base
+    depends_on:
+      postgresql:
+        condition: service_healthy
+    ports:
+      - "5545:4000"
+    env_file: .env.logflare
+    environment:
+      DB_HOSTNAME: postgresql
+      DB_PORT: 5541
+      DB_DATABASE: logflare-db
+      LOGFLARE_SUPABASE_MODE: "true"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5545/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
   supertokens:
     container_name: supertokens
     image: registry.supertokens.io/supertokens/supertokens-postgresql:11.1.0
